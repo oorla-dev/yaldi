@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album</title>
+    <style>
+        body {
+            font-family: 'Roboto Mono', monospace;
+            text-align: center;
+            padding: 20px;
+            background-color: #FFFFFF;
+            color: #333;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        #logo {
+            max-width: 300px;
+            cursor: pointer;
+        }
+
+        #tracklist-container {
+            width: 100%;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+            max-height: 0;
+        }
+
+        #tracklist-container.show {
+            max-height: 1000px;
+        }
+
+        #tracklist {
+            margin-top: 20px;
+        }
+
+        .play-pause-btn {
+            font-family: 'Mos Ver Old', monospace;
+            font-size: 2em;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .description {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        audio {
+            display: none;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/mos-ver-old" rel="stylesheet">
+</head>
+<body>
+    <img id="logo" src="https://i.ibb.co/NgS7rqnn/2-20250302-130159-0001.jpg" alt="Logo Album">
+    <div id="tracklist-container">
+        <div id="tracklist">
+            <div class="description">AITS-01</div>
+            <button id="play-pause-btn-1" class="play-pause-btn">▶</button>
+            <audio id="audio-1" src="https://upnow-prod.ff45e40d1a1c8f7e7de4e976d0c9e555.r2.cloudflarestorage.com/m4w1EbZcpchbJp7p9QcDgCW9ZXk2/52f7ba75-dd2d-42c7-862f-faa9348e07af?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=cdd12e35bbd220303957dc5603a4cc8e%2F20250303%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250303T171945Z&X-Amz-Expires=43200&X-Amz-Signature=d0d4b217c709ee19e8a7a6e516ea89aa7632a719beb38a7e7250b4f915990c36&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22ALDIINTHESKY.mp3%22"></audio>
+        </div>
+        <div id="tracklist">
+            <div class="description">NA-01</div>
+            <button id="play-pause-btn-2" class="play-pause-btn">▶</button>
+            <audio id="audio-2" src="https://upnow-prod.ff45e40d1a1c8f7e7de4e976d0c9e555.r2.cloudflarestorage.com/m4w1EbZcpchbJp7p9QcDgCW9ZXk2/0b6d6d93-500e-4589-8685-20a8076b9d8e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=cdd12e35bbd220303957dc5603a4cc8e%2F20250306%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250306T172625Z&X-Amz-Expires=43200&X-Amz-Signature=67118aa8983e829a86b4a6ff4181a186d93bdf2a668362b009cf4797db22d803&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22NEW-ALDY.mp3%22"></audio>
+        </div>
+    </div>
+
+    <script>
+        const logo = document.getElementById('logo');
+        const tracklistContainer = document.getElementById('tracklist-container');
+        const playPauseBtn1 = document.getElementById('play-pause-btn-1');
+        const audio1 = document.getElementById('audio-1');
+        const playPauseBtn2 = document.getElementById('play-pause-btn-2');
+        const audio2 = document.getElementById('audio-2');
+        let isPlaying1 = false;
+        let isPlaying2 = false;
+
+        logo.addEventListener('click', () => {
+            tracklistContainer.classList.toggle('show');
+        });
+
+        playPauseBtn1.addEventListener('click', () => {
+            if (isPlaying1) {
+                audio1.pause();
+                playPauseBtn1.textContent = '▶';
+            } else {
+                audio1.play();
+                playPauseBtn1.textContent = '⏸';
+            }
+            isPlaying1 = !isPlaying1;
+        });
+
+        playPauseBtn2.addEventListener('click', () => {
+            if (isPlaying2) {
+                audio2.pause();
+                playPauseBtn2.textContent = '▶';
+            } else {
+                audio2.play();
+                playPauseBtn2.textContent = '⏸';
+            }
+            isPlaying2 = !isPlaying2;
+        });
+    </script>
+</body>
+</html>

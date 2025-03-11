@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeezyaldi</title>
+    <style>
+        body {
+            font-family: "Verdana Old Mono", monospace;
+            margin: 0;
+            padding: 0;
+            line-height: 1.3;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Assicura che il body occupi almeno l'intera altezza della viewport */
+        }
+
+        header {
+            background-color: #FFFFFF;
+            padding: 20px;
+        }
+
+        nav a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .hero {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-content h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .products {
+            display: flex;
+            justify-content: space-around;
+            padding: 40px 20px;
+            flex-wrap: wrap;
+        }
+
+        .product {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .product:hover {
+            transform: scale(1.1);
+        }
+
+        .purchase-options {
+            display: none;
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            z-index: 10;
+        }
+
+        .purchase-options.show {
+            display: block;
+            opacity: 1;
+            transform: translate(-50%, 10px) scale(1.1);
+        }
+
+        .purchase-options button {
+            margin: 5px;
+            padding: 10px 15px;
+            border: none;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+        }
+
+        .buy-now {
+            font-weight: bold;
+        }
+
+        .product img {
+            max-width: 15%;
+            height: auto;
+        }
+
+        footer {
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto; /* Spinge il footer in fondo alla pagina */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>ALDI x YZY</h1>
+            </div>
+        </section>
+
+        <section class="products">
+            <div class="product" data-product="1" data-name="AS-01">
+                <img src="https://i.ibb.co/MDZf9tSY/Progetto-senza-titolo.jpg" alt="AS-01">
+                <h2>AS-01</h2>
+                <button class="buy-now">Buy</button>
+                <div class="purchase-options">
+                    <button class="option" data-size="1">SIZE 1</button>
+                    <button class="option" data-size="2">SIZE 2</button>
+                    <button class="option" data-size="3">SIZE 3</button>
+                </div>
+            </div>
+            <div class="product" data-product="2" data-name="AH-01">
+                <img src="https://i.ibb.co/Z1BSx9zR/Progetto-senza-titolo.jpg" alt="AH-01">
+                <h2>AH-01</h2>
+                <button class="buy-now">Buy</button>
+                <div class="purchase-options">
+                    <button class="option" data-size="1">SIZE 1</button>
+                    <button class="option" data-size="2">SIZE 2</button>
+                    <button class="option" data-size="3">SIZE 3</button>
+                </div>
+            </div>
+            <div class="product" data-product="3" data-name="AM-01">
+                <img src="https://i.ibb.co/MDD2ZSgp/Progetto-senza-titolo-2.jpg" alt="AM-01">
+                <h2>AM-01</h2>
+                <button class="buy-now">Buy</button>
+                <div class="purchase-options">
+                    <button class="option" data-size="1">SIZE 1</button>
+                    <button class="option" data-size="2">SIZE 2</button>
+                    <button class="option" data-size="3">SIZE 3</button>
+                </div>
+            </div>
+              <audio src="https://store-screenapp-production.storage.googleapis.com/vid/67c442a934b5811e25b46887/6bc14119-f2b1-4ea5-b17b-ab716577fb06.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=GOOG1EINEQV5X2QGY62PSZMBMUR7IGGVLKNDB6ABP5GL6O6FKO76DWA2IE3SB%2F20250303%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250303T153555Z&X-Amz-Expires=604800&X-Amz-Signature=ba95c961e33e304f5379c33f8bc496b34d06387546f2fce554687f04b3f08a56&X-Amz-SignedHeaders=host&response-content-type=attachment%3B%20filename%3D%226bc14119-f2b1-4ea5-b17b-ab716577fb06.mp3%22%3B%20filename%2A%3D%20UTF-8%27%27ALDIINTHESKY.mp3%3B#t=0," autoplay loop style="display:none;"></audio>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 YZY</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const products = document.querySelectorAll('.product');
+
+            products.forEach(product => {
+                const buyButton = product.querySelector('.buy-now');
+                const purchaseOptions = product.querySelector('.purchase-options');
+                const options = product.querySelectorAll('.option');
+
+                buyButton.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    purchaseOptions.classList.add('show');
+                });
+
+                options.forEach(option => {
+                    option.addEventListener('click', (event) => {
+                        event.stopPropagation();
+                        purchaseOptions.classList.remove('show');
+                    });
+                });
+            });
+
+            document.addEventListener('click', (event) => {
+                products.forEach(product => {
+                    const purchaseOptions = product.querySelector('.purchase-options');
+                    if (purchaseOptions.classList.contains('show') && !purchaseOptions.contains(event.target) && !product.querySelector('.buy-now').contains(event.target)) {
+                        purchaseOptions.classList.remove('show');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
