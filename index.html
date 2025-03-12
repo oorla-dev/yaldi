@@ -101,10 +101,10 @@
             font-weight: bold;
         }
         .coming-soon {
-          font-family: "Verdana Old Mono", monospace;
-          font-size: 0.8em; /* Diminuito la dimensione del font */
-          color: gray; /* Cambiato il colore in grigio */
-          margin-top: 10px;
+            font-family: "Verdana Old Mono", monospace;
+            font-size: 0.8em;
+            color: gray;
+            margin-top: 10px;
         }
 
         .product img {
@@ -172,30 +172,38 @@
                     <button class="buy-now">Listen</button>
                 </a>
             </div>
+            <div class="product" data-product="5" data-name="AZ-01">
+                <img src="https://i.ibb.co/cKYWnCYy/20250309-135743-0008.jpg" alt="AB-01">
+                <h2>AB-01</h2>
+                <div class="purchase-options">
+                    <button class="option" data-size="1">SIZE 1</button>
+                    <button class="option" data-size="2">SIZE 2</button>
+                    <button class="option" data-size="3">SIZE 3</button>
+                </div>
+                <p class="coming-soon">Coming Soon</p>
+            </div>
+            <div class="product" data-product="6" data-name="AB-01">
+                <img src="https://i.ibb.co/8gm0W4dp/20250309-135743-0009.jpg" alt="AC-01">
+                <h2>AC-01</h2>
+                <div class="purchase-options">
+                    <button class="option" data-size="1">SIZE 1</button>
+                    <button class="option" data-size="2">SIZE 2</button>
+                    <button class="option" data-size="3">SIZE 3</button>
+                </div>
+                <p class="coming-soon">Coming Soon</p>
+            </div>
+            <div class="product" data-product="7" data-name="AC-01">
+                <img src="https://i.ibb.co/jZLpPWcL/20250309-135743-0010.jpg" alt="AMC-01">
+                <h2>AMC-01</h2>
+                <div class="purchase-options">
+                    <button class="option" data-size="1">SIZE 1</button>
+                    <button class="option" data-size="2">SIZE 2</button>
+                    <button class="option" data-size="3">SIZE 3</button>
+                </div>
+                <p class="coming-soon">Coming Soon</p>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 YZY</p>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const products = document.querySelectorAll('.product');
-
-            products.forEach(product => {
-                const purchaseOptions = product.querySelector('.purchase-options');
-                const options = product.querySelectorAll('.option');
-
-                if (purchaseOptions) {
-                    document.addEventListener('click', (event) => {
-                        if (!product.contains(event.target)) {
-                            purchaseOptions.classList.remove('show');
-                        }
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+        <p>&copy;
