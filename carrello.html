@@ -75,6 +75,21 @@
             <button id="play-pause-btn-2" class="play-pause-btn">▶</button>
             <audio id="audio-2" src="MUSICA/NEW ALDI.mp3"></audio>
         </div>
+        <div id="tracklist">
+            <div class="description">80A-01</div>
+            <button id="play-pause-btn-3" class="play-pause-btn">▶</button>
+            <audio id="audio-3" src="MUSICA/80ALDIYS.mp3"></audio>
+        </div>
+        <div id="tracklist">
+            <div class="description">MTAM-01</div>
+            <button id="play-pause-btn-4" class="play-pause-btn">▶</button>
+            <audio id="audio-4" src="MUSICA/MEET THE ALDI MANAGERS.mp3"></audio>
+        </div>
+        <div id="tracklist">
+            <div class="description">FG-01</div>
+            <button id="play-pause-btn-5" class="play-pause-btn">▶</button>
+            <audio id="audio-5" src="MUSICA/FVUCKGIANVOIT.mp3"></audio>
+        </div>
     </div>
 
     <script>
@@ -84,8 +99,17 @@
         const audio1 = document.getElementById('audio-1');
         const playPauseBtn2 = document.getElementById('play-pause-btn-2');
         const audio2 = document.getElementById('audio-2');
+        const playPauseBtn3 = document.getElementById('play-pause-btn-3');
+        const audio3 = document.getElementById('audio-3');
+        const playPauseBtn4 = document.getElementById('play-pause-btn-4');
+        const audio4 = document.getElementById('audio-4');
+        const playPauseBtn5 = document.getElementById('play-pause-btn-5');
+        const audio5 = document.getElementById('audio-5');
         let isPlaying1 = false;
         let isPlaying2 = false;
+        let isPlaying3 = false;
+        let isPlaying4 = false;
+        let isPlaying5 = false;
 
         logo.addEventListener('click', () => {
             tracklistContainer.classList.toggle('show');
@@ -96,15 +120,24 @@
                 otherAudio.pause();
                 otherButton.textContent = '▶';
                 if (otherAudio === audio1) {
-                  isPlaying1 = false;
-                } else {
-                  isPlaying2 = false;
+                    isPlaying1 = false;
+                } else if (otherAudio === audio2) {
+                    isPlaying2 = false;
+                } else if (otherAudio === audio3) {
+                    isPlaying3 = false;
+                } else if (otherAudio === audio4) {
+                    isPlaying4 = false;
+                } else if (otherAudio === audio5) {
+                    isPlaying5 = false;
                 }
             }
         }
 
         playPauseBtn1.addEventListener('click', () => {
             pauseOther(audio1, playPauseBtn1, audio2, playPauseBtn2, isPlaying2);
+            pauseOther(audio1, playPauseBtn1, audio3, playPauseBtn3, isPlaying3);
+            pauseOther(audio1, playPauseBtn1, audio4, playPauseBtn4, isPlaying4);
+            pauseOther(audio1, playPauseBtn1, audio5, playPauseBtn5, isPlaying5);
             if (isPlaying1) {
                 audio1.pause();
                 playPauseBtn1.textContent = '▶';
@@ -117,6 +150,9 @@
 
         playPauseBtn2.addEventListener('click', () => {
             pauseOther(audio2, playPauseBtn2, audio1, playPauseBtn1, isPlaying1);
+            pauseOther(audio2, playPauseBtn2, audio3, playPauseBtn3, isPlaying3);
+            pauseOther(audio2, playPauseBtn2, audio4, playPauseBtn4, isPlaying4);
+            pauseOther(audio2, playPauseBtn2, audio5, playPauseBtn5, isPlaying5);
             if (isPlaying2) {
                 audio2.pause();
                 playPauseBtn2.textContent = '▶';
@@ -126,6 +162,24 @@
             }
             isPlaying2 = !isPlaying2;
         });
-    </script>
-</body>
-</html>
+
+        playPauseBtn3.addEventListener('click', () => {
+            pauseOther(audio3, playPauseBtn3, audio1, playPauseBtn1, isPlaying1);
+            pauseOther(audio3, playPauseBtn3, audio2, playPauseBtn2, isPlaying2);
+            pauseOther(audio3, playPauseBtn3, audio4, playPauseBtn4, isPlaying4);
+            pauseOther(audio3, playPauseBtn3, audio5, playPauseBtn5, isPlaying5);
+            if (isPlaying3) {
+                audio3.pause();
+                playPauseBtn3.textContent = '▶';
+            } else {
+                audio3.play();
+                playPauseBtn3.textContent = '⏸';
+            }
+            isPlaying3 = !isPlaying3;
+        });
+
+        playPauseBtn4.addEventListener('click', () => {
+            pauseOther(audio4, playPauseBtn4, audio1, playPauseBtn1, isPlaying1);
+            pauseOther(audio4, playPauseBtn4, audio2, playPauseBtn2, isPlaying2);
+            pauseOther(audio4, playPauseBtn4, audio3, playPauseBtn3, isPlaying3);
+            pauseOther(audio4, playPauseBtn4, audio
