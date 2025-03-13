@@ -91,7 +91,20 @@
             tracklistContainer.classList.toggle('show');
         });
 
+        function pauseOther(currentAudio, currentButton, otherAudio, otherButton, otherIsPlaying) {
+            if (otherIsPlaying) {
+                otherAudio.pause();
+                otherButton.textContent = '▶';
+                if (otherAudio === audio1) {
+                  isPlaying1 = false;
+                } else {
+                  isPlaying2 = false;
+                }
+            }
+        }
+
         playPauseBtn1.addEventListener('click', () => {
+            pauseOther(audio1, playPauseBtn1, audio2, playPauseBtn2, isPlaying2);
             if (isPlaying1) {
                 audio1.pause();
                 playPauseBtn1.textContent = '▶';
@@ -103,6 +116,7 @@
         });
 
         playPauseBtn2.addEventListener('click', () => {
+            pauseOther(audio2, playPauseBtn2, audio1, playPauseBtn1, isPlaying1);
             if (isPlaying2) {
                 audio2.pause();
                 playPauseBtn2.textContent = '▶';
@@ -115,4 +129,3 @@
     </script>
 </body>
 </html>
-
