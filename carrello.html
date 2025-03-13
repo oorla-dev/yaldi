@@ -1,183 +1,131 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Album</title>
-    <style>
-        body {
-            font-family: 'Roboto Mono', monospace;
-            text-align: center;
-            padding: 20px;
-            background-color: #FFFFFF;
-            color: #333;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            min-height: 100vh;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Album</title>
+    <style>
+        body {
+            font-family: 'Roboto Mono', monospace;
+            text-align: center;
+            padding: 20px;
+            background-color: #FFFFFF;
+            color: #333;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
 
-        #logo {
-            max-width: 300px;
-            cursor: pointer;
-        }
+        #logo {
+            max-width: 300px;
+            cursor: pointer;
+        }
 
-        #tracklist-container {
-            width: 100%;
-            overflow: hidden;
-            transition: max-height 0.3s ease-in-out;
-            max-height: 0;
-        }
+        #tracklist-container {
+            width: 100%;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+            max-height: 0;
+        }
 
-        #tracklist-container.show {
-            max-height: 1000px;
-        }
+        #tracklist-container.show {
+            max-height: 1000px;
+        }
 
-        .tracklist-item {
-            margin-top: 20px;
-        }
+        #tracklist {
+            margin-top: 20px;
+        }
 
-        .play-pause-btn {
-            font-family: 'Mos Ver Old', monospace;
-            font-size: 2em;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            outline: none;
-        }
+        .play-pause-btn {
+            font-family: 'Mos Ver Old', monospace;
+            font-size: 2em;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            outline: none;
+        }
 
-        .description {
-            font-size: 1.2em;
-            margin-bottom: 5px;
-        }
+        .description {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
 
-        audio {
-            display: none;
-        }
-    </style>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/mos-ver-old" rel="stylesheet">
+        audio {
+            display: none;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/mos-ver-old" rel="stylesheet">
 </head>
 <body>
-    <img id="logo" src="https://i.ibb.co/NgS7rqnn/2-20250302-130159-0001.jpg" alt="Logo Album">
-    <div id="tracklist-container">
-        <div class="tracklist-item">
-            <div class="description">AITS-01</div>
-            <button id="play-pause-btn-1" class="play-pause-btn">▶</button>
-            <audio id="audio-1" src="MUSICA/ALDIINTHESKY.mp3"></audio>
-        </div>
-        <div class="tracklist-item">
-            <div class="description">NA-01</div>
-            <button id="play-pause-btn-2" class="play-pause-btn">▶</button>
-            <audio id="audio-2" src="MUSICA/NEWALDI.mp3"></audio>
-        </div>
-        <div class="tracklist-item">
-            <div class="description">80A-01</div>
-            <button id="play-pause-btn-3" class="play-pause-btn">▶</button>
-            <audio id="audio-3" src="MUSICA/80ALDIYS.mp3"></audio>
-        </div>
-        <div class="tracklist-item">
-            <div class="description">MTAM-01</div>
-            <button id="play-pause-btn-4" class="play-pause-btn">▶</button>
-            <audio id="audio-4" src="MUSICA/MEETTHEALDIMANAGERS.mp3"></audio>
-        </div>
-        <div class="tracklist-item">
-            <div class="description">FG-01</div>
-            <button id="play-pause-btn-5" class="play-pause-btn">▶</button>
-            <audio id="audio-5" src="MUSICA/FVUCKGIANVOIT.mp3"></audio>
-        </div>
-    </div>
+    <img id="logo" src="https://i.ibb.co/NgS7rqnn/2-20250302-130159-0001.jpg" alt="Logo Album">
+    <div id="tracklist-container">
+        <div id="tracklist">
+            <div class="description">AITS-01</div>
+            <button id="play-pause-btn-1" class="play-pause-btn">▶</button>
+            <audio id="audio-1" src="MUSICA/ALDIINTHESKY.mp3"></audio>
+        </div>
+        <div id="tracklist">
+            <div class="description">NA-01</div>
+            <button id="play-pause-btn-2" class="play-pause-btn">▶</button>
+            <audio id="audio-2" src="MUSICA/NEW ALDI.mp3"></audio>
+        </div>
+    </div>
 
-    <script>
-        const logo = document.getElementById('logo');
-        const tracklistContainer = document.getElementById('tracklist-container');
-        const playPauseBtn1 = document.getElementById('play-pause-btn-1');
-        const audio1 = document.getElementById('audio-1');
-        const playPauseBtn2 = document.getElementById('play-pause-btn-2');
-        const audio2 = document.getElementById('audio-2');
-        const playPauseBtn3 = document.getElementById('play-pause-btn-3');
-        const audio3 = document.getElementById('audio-3');
-        const playPauseBtn4 = document.getElementById('play-pause-btn-4');
-        const audio4 = document.getElementById('audio-4');
-        const playPauseBtn5 = document.getElementById('play-pause-btn-5');
-        const audio5 = document.getElementById('audio-5');
-        let isPlaying1 = false;
-        let isPlaying2 = false;
-        let isPlaying3 = false;
-        let isPlaying4 = false;
-        let isPlaying5 = false;
+    <script>
+        const logo = document.getElementById('logo');
+        const tracklistContainer = document.getElementById('tracklist-container');
+        const playPauseBtn1 = document.getElementById('play-pause-btn-1');
+        const audio1 = document.getElementById('audio-1');
+        const playPauseBtn2 = document.getElementById('play-pause-btn-2');
+        const audio2 = document.getElementById('audio-2');
+        let isPlaying1 = false;
+        let isPlaying2 = false;
 
-        logo.addEventListener('click', () => {
-            tracklistContainer.classList.toggle('show');
-        });
+        logo.addEventListener('click', () => {
+            tracklistContainer.classList.toggle('show');
+        });
 
-        function pauseOther(currentAudio, currentButton, otherAudio, otherButton, otherIsPlaying) {
-            if (otherIsPlaying) {
-                otherAudio.pause();
-                otherButton.textContent = '▶';
-                if (otherAudio === audio1) {
-                    isPlaying1 = false;
-                } else if (otherAudio === audio2) {
-                    isPlaying2 = false;
-                } else if (otherAudio === audio3) {
-                    isPlaying3 = false;
-                } else if (otherAudio === audio4) {
-                    isPlaying4 = false;
-                } else if (otherAudio === audio5) {
-                    isPlaying5 = false;
-                }
-            }
-        }
+        function pauseOther(currentAudio, currentButton, otherAudio, otherButton, otherIsPlaying) {
+            if (otherIsPlaying) {
+                otherAudio.pause();
+                otherButton.textContent = '▶';
+                if (otherAudio === audio1) {
+                  isPlaying1 = false;
+                } else {
+                  isPlaying2 = false;
+                }
+            }
+        }
 
-        playPauseBtn1.addEventListener('click', () => {
-            pauseOther(audio1, playPauseBtn1, audio2, playPauseBtn2, isPlaying2);
-            pauseOther(audio1, playPauseBtn1, audio3, playPauseBtn3, isPlaying3);
-            pauseOther(audio1, playPauseBtn1, audio4, playPauseBtn4, isPlaying4);
-            pauseOther(audio1, playPauseBtn1, audio5, playPauseBtn5, isPlaying5);
-            if (isPlaying1) {
-                audio1.pause();
-                playPauseBtn1.textContent = '▶';
-            } else {
-                audio1.play();
-                playPauseBtn1.textContent = '⏸';
-            }
-            isPlaying1 = !isPlaying1;
-        });
+        playPauseBtn1.addEventListener('click', () => {
+            pauseOther(audio1, playPauseBtn1, audio2, playPauseBtn2, isPlaying2);
+            if (isPlaying1) {
+                audio1.pause();
+                playPauseBtn1.textContent = '▶';
+            } else {
+                audio1.play();
+                playPauseBtn1.textContent = '⏸';
+            }
+            isPlaying1 = !isPlaying1;
+        });
 
-        playPauseBtn2.addEventListener('click', () => {
-            pauseOther(audio2, playPauseBtn2, audio1, playPauseBtn1, isPlaying1);
-            pauseOther(audio2, playPauseBtn2, audio3, playPauseBtn3, isPlaying3);
-            pauseOther(audio2, playPauseBtn2, audio4, playPauseBtn4, isPlaying4);
-            pauseOther(audio2, playPauseBtn2, audio5, playPauseBtn5, isPlaying5);
-            if (isPlaying2) {
-                audio2.pause();
-                playPauseBtn2.textContent = '▶';
-            } else {
-                audio2.play();
-                playPauseBtn2.textContent = '⏸';
-            }
-            isPlaying2 = !isPlaying2;
-        });
-
-        playPauseBtn3.addEventListener('click', () => {
-            pauseOther(audio3, playPauseBtn3, audio1, playPauseBtn1, isPlaying1);
-            pauseOther(audio3, playPauseBtn3, audio2, playPauseBtn2, isPlaying2);
-            pauseOther(audio3, playPauseBtn3, audio4, playPauseBtn4, isPlaying4);
-            pauseOther(audio3, playPauseBtn3, audio5, playPauseBtn5, isPlaying5);
-            if (isPlaying3) {
-                audio3.pause();
-                playPauseBtn3.textContent = '▶';
-            } else {
-                audio3.play();
-                playPauseBtn3.textContent = '⏸';
-            }
-            isPlaying3 = !isPlaying3;
-        });
-
-        playPauseBtn4.addEventListener('click', () => {
-            pauseOther(audio4, playPauseBtn4, audio1, playPauseBtn1, isPlaying1);
-            pauseOther(audio4, playPauseBtn4, audio2, playPauseBtn2, isPlaying
+        playPauseBtn2.addEventListener('click', () => {
+            pauseOther(audio2, playPauseBtn2, audio1, playPauseBtn1, isPlaying1);
+            if (isPlaying2) {
+                audio2.pause();
+                playPauseBtn2.textContent = '▶';
+            } else {
+                audio2.play();
+                playPauseBtn2.textContent = '⏸';
+            }
+            isPlaying2 = !isPlaying2;
+        });
+    </script>
+</body>
+</html>
