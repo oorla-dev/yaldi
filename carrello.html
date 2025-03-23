@@ -67,22 +67,17 @@
     
     <div id="tracklist-container">
         <div id="tracklist">
-            <!-- Prima traccia -->
+        
             <div class="description">AITS-01</div>
             <button id="play-pause-btn-1" class="play-pause-btn">▶</button>
             <audio id="audio-1" src="MUSICA/ALDIINTHESKY.mp3"></audio>
-
-            <!-- Seconda traccia -->
-            <div class="description">NA-01</div>
-            <button id="play-pause-btn-2" class="play-pause-btn">▶</button>
-            <audio id="audio-2" src="MUSICA/NEWALDI(online-audio-converter.com).mp3"></audio>
-
-            <!-- Terza traccia aggiunta -->
+            
+          
             <div class="description">MTAM-01</div>
             <button id="play-pause-btn-3" class="play-pause-btn">▶</button>
             <audio id="audio-3" src="MUSICA/MEETTHEALDIMANAGERS.mp3"></audio>
 
-            <!-- Quarta traccia aggiunta -->
+          
             <div class="description">FG-01</div>
             <button id="play-pause-btn-4" class="play-pause-btn">▶</button>
             <audio id="audio-4" src="MUSICA/FVUCKGIANVOIT.mp3"></audio>
@@ -104,13 +99,13 @@
             button.addEventListener("click", () => {
                 const audio = audioElements[index];
 
-                // Se un altro audio sta suonando, lo mettiamo in pausa
+               
                 if (currentlyPlaying && currentlyPlaying !== audio) {
                     currentlyPlaying.pause();
                     buttons[[...audioElements].indexOf(currentlyPlaying)].textContent = "▶";
                 }
 
-                // Controllo play/pausa
+               
                 if (audio.paused) {
                     audio.play();
                     button.textContent = "⏸";
