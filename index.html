@@ -12,17 +12,27 @@
     </div>
 
     <header>
-        <nav></nav>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#products">Prodotti</a></li>
+                <li><a href="#">Chi Siamo</a></li>
+                <li><a href="#">Contatti</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
         <section class="hero">
             <div class="hero-content">
-                <h1></h1>
+                <h1>La Collaborazione Esclusiva che Non Ti Aspetti</h1>
+                <p>Yeezy incontra l'inconfondibile stile di Aldi. Preparati per una collezione unica, in arrivo il 1 Aprile 2025!</p>
+                <a href="#products" class="button">Scopri i Prodotti</a>
             </div>
         </section>
 
-        <section class="products">
+        <section class="products" id="products">
+            <h2>I Nostri Prodotti Esclusivi</h2>
             <div class="product" data-product="4" data-name="AY-01">
                 <a href="carrello.html">
                     <img src="https://i.ibb.co/p6TdtLVH/1-20250302-130159-0000.jpg" alt="AY-01">
@@ -126,4 +136,51 @@
 
         function updateCountdown() {
             const now = new Date().getTime();
-            const
+            const difference = endDate - now;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            daysElement.textContent = String(days).padStart(2, '0');
+            hoursElement.textContent = String(hours).padStart(2, '0');
+            minutesElement.textContent = String(minutes).padStart(2, '0');
+            secondsElement.textContent = String(seconds).padStart(2, '0');
+
+            if (difference < 0) {
+                clearInterval(countdownInterval);
+                daysElement.textContent = "00";
+                hoursElement.textContent = "00";
+                minutesElement.textContent = "00";
+                secondsElement.textContent = "00";
+            
+                const comingSoonElements = document.querySelectorAll('.coming-soon');
+                comingSoonElements.forEach(element => {
+                    element.textContent = "Disponibile Ora!";
+                    element.classList.remove('coming-soon');
+                    const productDiv = element.closest('.product');
+                    const purchaseOptions = productDiv.querySelector('.purchase-options');
+                    if (purchaseOptions) {
+                        purchaseOptions.style.display = 'flex'; 
+                    }
+                });
+            }
+        }
+
+        updateCountdown(); 
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const productDivs = document.querySelectorAll('.product');
+            productDivs.forEach(productDiv => {
+                const comingSoon = productDiv.querySelector('.coming-soon');
+                const purchaseOptions = productDiv.querySelector('.purchase-options');
+                if (comingSoon && purchaseOptions) {
+                    purchaseOptions.style.display = 'none'; 
+                }
+            });
+        });
+    </script>
+</body>
+</html>
