@@ -128,14 +128,14 @@ footer {
     display: none;
 }
 
-/* Stili per il Countdown */
-.countdown-container { /* per isolare gli stili del countdown */
+
+.countdown-container { 
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* se vuoi che il countdown occupi l'intera pagina */
-    background-color: #fff; /* Sfondo bianco */
-    color: #000; /* Testo nero */
+    min-height: 100vh; 
+    background-color: #fff; 
+    color: #000; 
     font-family: "Verdana Bold", sans-serif;
     font-size: 2em;
 }
@@ -144,4 +144,5 @@ footer {
     display: flex;
     gap: 5px;
 }
+
 
