@@ -12,27 +12,17 @@
     </div>
 
     <header>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#products">Prodotti</a></li>
-                <li><a href="#">Chi Siamo</a></li>
-                <li><a href="#">Contatti</a></li>
-            </ul>
-        </nav>
+        <nav></nav>
     </header>
 
     <main>
         <section class="hero">
             <div class="hero-content">
-                <h1>La Collaborazione Esclusiva che Non Ti Aspetti</h1>
-                <p>Yeezy incontra l'inconfondibile stile di Aldi. Preparati per una collezione unica, in arrivo il 1 Aprile 2025!</p>
-                <a href="#products" class="button">Scopri i Prodotti</a>
+                <h1></h1>
             </div>
         </section>
 
-        <section class="products" id="products">
-            <h2>I Nostri Prodotti Esclusivi</h2>
+        <section class="products">
             <div class="product" data-product="4" data-name="AY-01">
                 <a href="carrello.html">
                     <img src="https://i.ibb.co/p6TdtLVH/1-20250302-130159-0000.jpg" alt="AY-01">
@@ -136,51 +126,31 @@
 
         function updateCountdown() {
             const now = new Date().getTime();
-            const difference = endDate - now;
+            const timeDifference = endDate - now;
 
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-            daysElement.textContent = String(days).padStart(2, '0');
-            hoursElement.textContent = String(hours).padStart(2, '0');
-            minutesElement.textContent = String(minutes).padStart(2, '0');
-            secondsElement.textContent = String(seconds).padStart(2, '0');
-
-            if (difference < 0) {
+            if (timeDifference <= 0) {
                 clearInterval(countdownInterval);
-                daysElement.textContent = "00";
-                hoursElement.textContent = "00";
-                minutesElement.textContent = "00";
-                secondsElement.textContent = "00";
-            
-                const comingSoonElements = document.querySelectorAll('.coming-soon');
-                comingSoonElements.forEach(element => {
-                    element.textContent = "Disponibile Ora!";
-                    element.classList.remove('coming-soon');
-                    const productDiv = element.closest('.product');
-                    const purchaseOptions = productDiv.querySelector('.purchase-options');
-                    if (purchaseOptions) {
-                        purchaseOptions.style.display = 'flex'; 
-                    }
-                });
+                daysElement.innerText = "00";
+                hoursElement.innerText = "00";
+                minutesElement.innerText = "00";
+                secondsElement.innerText = "00";
+                // Puoi aggiungere qui un messaggio o un'azione da eseguire quando il countdown finisce
+                return;
             }
+
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            daysElement.innerText = String(days).padStart(2, '0');
+            hoursElement.innerText = String(hours).padStart(2, '0');
+            minutesElement.innerText = String(minutes).padStart(2, '0');
+            secondsElement.innerText = String(seconds).padStart(2, '0');
         }
 
-        updateCountdown(); 
+        updateCountdown(); // Esegui la funzione subito per evitare un ritardo iniziale
         const countdownInterval = setInterval(updateCountdown, 1000);
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            const productDivs = document.querySelectorAll('.product');
-            productDivs.forEach(productDiv => {
-                const comingSoon = productDiv.querySelector('.coming-soon');
-                const purchaseOptions = productDiv.querySelector('.purchase-options');
-                if (comingSoon && purchaseOptions) {
-                    purchaseOptions.style.display = 'none'; 
-                }
-            });
-        });
     </script>
 </body>
 </html>
