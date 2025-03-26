@@ -4,31 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yeezy x Aldi</title>
-    <link rel="stylesheet" href="style.css">
     <style>
         .countdown {
             display: flex;
             justify-content: center;
-            gap: 5px;
+            gap: 15px;
             background-color: #000;
             color: #fff;
             font-family: "Verdana Bold", sans-serif;
-            font-size: 2em;
-            padding: 10px 0;
+            font-size: 2.5em;
+            padding: 20px 0;
         }
+
         body {
             margin: 0;
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .product {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .product img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .purchase-options {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .option {
+            margin: 0 5px;
+            padding: 5px 10px;
+        }
+
+        .coming-soon {
+            color: red;
         }
     </style>
 </head>
 <body>
     <div class="countdown">
-        <span id="days">00</span>.<span id="hours">00</span>.<span id="minutes">00</span>.<span id="seconds">00</span>.<span id="milliseconds">000</span>
+        <span id="days">00</span>:<span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
     </div>
 
     <header>
-        <nav>
-        </nav>
+        <nav></nav>
     </header>
 
     <main>
@@ -137,22 +167,9 @@
         const hoursElement = document.getElementById("hours");
         const minutesElement = document.getElementById("minutes");
         const secondsElement = document.getElementById("seconds");
-        const millisecondsElement = document.getElementById("milliseconds");
 
         const endDate = new Date("April 1, 2025 18:00:00").getTime();
 
         function updateCountdown() {
             const now = new Date().getTime();
-            const difference = endDate - now;
-
-            if (difference <= 0) {
-                clearInterval(interval);
-                daysElement.textContent = "00";
-                hoursElement.textContent = "00";
-                minutesElement.textContent = "00";
-                secondsElement.textContent = "00";
-                millisecondsElement.textContent = "000";
-                return;
-            }
-
-            const days = Math.floor(difference / (1000 * 60 * 60
+            const
