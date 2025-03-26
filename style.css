@@ -128,14 +128,13 @@ footer {
     display: none;
 }
 
-/* Stili per il Countdown */
-.countdown-container { /* per isolare gli stili del countdown */
+.countdown-container { 
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh; /* se vuoi che il countdown occupi l'intera pagina */
-    background-color: #000;
-    color: #fff;
+    background-color: #ffff;
+    color: #000;
     font-family: "Verdana Old Mon", sans-serif;
     font-size: 2em;
 }
@@ -145,4 +144,4 @@ footer {
     gap: 5px;
 }
 
-/* Eventuali stili aggiuntivi per il countdown qui */
+
