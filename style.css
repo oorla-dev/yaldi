@@ -21,15 +21,14 @@ body {
         }
 
         .countdown span {
-            margin: 0 5px; /* Ridotto un po' il margine per far spazio ai microsecondi */
+            margin: 0 5px; 
         }
 
 header {
     background-color: #FFFFFF;
     padding: 10px;
     width: 100%;
-    text-align: center; /* Centra il contenuto dell'header (opzionale) */
-}
+    text-align: center; 
 
 nav a {
     margin-right: 20px;
