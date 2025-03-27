@@ -1,31 +1,28 @@
 body {
-    font-family: "Verdana Old Mono", monospace;
-    margin: 0;
-    padding: 0;
-    line-height: 1.3;
-    color: black;
-    display: flex;
-    flex-direction: column; /* Cambiato in column per centrare anche verticalmente con align-items */
-    justify-content: center; /* Centra verticalmente gli elementi figli */
-    align-items: center;    /* Centra orizzontalmente gli elementi figli */
-    min-height: 100vh;
-    background-color: #fffff; /* Aggiunto un colore di sfondo per la pagina */
-}
+            font-family: "Verdana Old Mono", monospace;
+            margin: 0;
+            padding: 0;
+            line-height: 1.3;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #fffff;
+        }
 
-.countdown {
-    font-size: 2em;
-    font-weight: bold;
-    color: #333;
-    padding: 20px;
-    
-    
-    background-color: #fff;
+        .countdown {
+            font-size: 1em;
+            font-weight: bold;
+            color: #333;
+            padding: 20px;
+            background-color: #fff;
+        }
 
-}
-
-.countdown span {
-    margin: 0 10px;
-}
+        .countdown span {
+            margin: 0 5px; /* Ridotto un po' il margine per far spazio ai microsecondi */
+        }
 
 header {
     background-color: #FFFFFF;
