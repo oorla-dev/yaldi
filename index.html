@@ -14,27 +14,28 @@
             color: black;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centra orizzontalmente gli elementi figli (inclusa la countdown) */
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
+            background-color: #fffff;
         }
 
         .countdown {
-            font-size: 2em;
+            font-size: 1em;
             font-weight: bold;
             color: #333;
             padding: 20px;
             background-color: #fff;
-            margin-bottom: 20px; /* Aggiunge un po' di spazio sotto il countdown */
         }
 
         .countdown span {
-            margin: 0 10px;
+            margin: 0 5px; /* Ridotto un po' il margine per far spazio ai microsecondi */
         }
     </style>
 </head>
 <body>
     <div class="countdown">
-        <span id="days">00</span>:<span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>:<span id="milliseconds">00</span>
+        <span id="days">00</span>:<span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>:<span id="milliseconds">00</span>:<span id="microseconds">00</span>
     </div>
 
     <header>
@@ -147,7 +148,8 @@
         const hoursElement = document.getElementById("hours");
         const minutesElement = document.getElementById("minutes");
         const secondsElement = document.getElementById("seconds");
-        const millisecondsElement = document.getElementById("milliseconds"); // Ottieni l'elemento per i millisecondi
+        const millisecondsElement = document.getElementById("milliseconds");
+        const microsecondsElement = document.getElementById("microseconds"); // Ottieni l'elemento per i microsecondi
 
         const endDate = new Date("April 1, 2025 18:00:00").getTime();
 
@@ -162,7 +164,7 @@
                 minutesElement.innerText = "00";
                 secondsElement.innerText = "00";
                 millisecondsElement.innerText = "00";
-                // Puoi aggiungere qui un messaggio o un'azione da eseguire quando il countdown finisce
+                microsecondsElement.innerText = "00";
                 return;
             }
 
@@ -170,17 +172,19 @@
             const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-            const milliseconds = Math.floor((timeDifference % 1000) / 10); // Ottieni le prime due cifre dei millisecondi
+            const milliseconds = Math.floor(timeDifference % 1000);
+            const microseconds = Math.floor((timeDifference % 1) * 1000); // Tecnicamente non veri microsecondi con Date, ma per mostrare un cambiamento
 
             daysElement.innerText = String(days).padStart(2, '0');
             hoursElement.innerText = String(hours).padStart(2, '0');
             minutesElement.innerText = String(minutes).padStart(2, '0');
             secondsElement.innerText = String(seconds).padStart(2, '0');
-            millisecondsElement.innerText = String(milliseconds).padStart(2, '0'); // Aggiorna i millisecondi
+            millisecondsElement.innerText = String(milliseconds).padStart(3, '0').slice(0, 2); // Mostra le prime due cifre dei millisecondi
+            microsecondsElement.innerText = String(microseconds).padStart(3, '0').slice(0, 2); // Mostra le prime due cifre (approssimazione)
         }
 
-        updateCountdown(); // Esegui la funzione subito per evitare un ritardo iniziale
-        const countdownInterval = setInterval(updateCountdown, 10); // Aggiorna ogni 10 millisecondi per mostrare i millisecondi che cambiano
+        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1); // Aggiorna il più frequentemente possibile
     </script>
 </body>
 </html>
