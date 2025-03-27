@@ -151,11 +151,10 @@
             hoursElement.innerText = String(hours).padStart(2, '0');
             minutesElement.innerText = String(minutes).padStart(2, '0');
             secondsElement.innerText = String(seconds).padStart(2, '0');
-            millisecondsElement.innerText = String(milliseconds).padStart(3, '0').slice(0, 2); // Mostra le prime due cifre dei millisecondi
-
+            millisecondsElement.innerText = String(milliseconds).padStart(3, '0').slice(0, 2);
         }
         updateCountdown();
-        const countdownInterval = setInterval(updateCountdown, 1); // Aggiorna il più frequentemente possibile
+        const countdownInterval = setInterval(updateCountdown, 1); 
     </script>
 </body>
 </html>
