@@ -9,7 +9,7 @@ body {
     justify-content: center; /* Centra verticalmente gli elementi figli */
     align-items: center;    /* Centra orizzontalmente gli elementi figli */
     min-height: 100vh;
-    background-color: #f4f4f4; /* Aggiunto un colore di sfondo per la pagina */
+    background-color: #fffff; /* Aggiunto un colore di sfondo per la pagina */
 }
 
 .countdown {
@@ -17,10 +17,10 @@ body {
     font-weight: bold;
     color: #333;
     padding: 20px;
-    /* border: 2px solid #333;  Rimosso il bordo */
-    border-radius: 5px;
+    
+    
     background-color: #fff;
-    /* margin-bottom: 20px; Rimosso il margine inferiore se non necessario */
+
 }
 
 .countdown span {
