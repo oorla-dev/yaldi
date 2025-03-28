@@ -2,7 +2,7 @@ body {
             font-family: "Verdana Old Mono", monospace;
             margin: 0;
             padding: 0;
-            line-height: 1.3;
+            line-height: 1.2;
             color: black;
             display: flex;
             flex-direction: column;
@@ -16,7 +16,7 @@ body {
             font-size: 1em;
             font-weight: bold;
             color: #333;
-            padding: 20px;
+            padding: 10px;
             background-color: #fff;
         }
 
