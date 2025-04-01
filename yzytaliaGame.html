@@ -127,13 +127,13 @@
         }));
 
         let playerImage = new Image();
-        playerImage.src = './imgs/skins/skin1.png';
+        playerImage.src = 'yzytaliaGame/imgs/skins/skin1.png';
         function drawPlayer() {
             ctx.drawImage(playerImage, player.x, player.y, player.width, player.height);
         }
 
         let bulletImage = new Image();
-        bulletImage.src = './imgs/bullets/nitrous.gif';
+        bulletImage.src = 'yzytaliaGame/imgs/bullets/nitrous.gif';
         function drawBullet() {
             if (bulletState === 'fire') {
                 ctx.drawImage(bulletImage, bullet.x, bullet.y, bullet.width, bullet.height);
@@ -141,7 +141,7 @@
         }
 
         let invaderImage = new Image();
-        invaderImage.src = './imgs/enemies/enemy.png';
+        invaderImage.src = 'yzytaliaGame/imgs/enemies/enemy.png';
         function drawInvaders() {
             invaders.forEach(invader => {
                 ctx.drawImage(invaderImage, invader.x, invader.y, invader.width, invader.height);
@@ -203,7 +203,7 @@
                         }
                         bulletState = 'ready';
                         score += 10;
-                        let sfx = new Audio("./sounds/audio" + level + ".mp3");
+                        let sfx = new Audio("yzytaliaGame/sounds/audio1.mp3" + level + ".mp3");
                         sfx.volume = 0.05;
                         sfx.play();
                         
