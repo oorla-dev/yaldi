@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marinaio vs Twista Invaders</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: 'Verdana', 'Courier New', monospace;
+            overflow: hidden;
+            /* Evita lo scroll */
+        }
+
+        canvas {
+            border: 3px solid white;
+            border-radius: 10px;
+        }
+
+        button {
+            border: 3px solid white;
+            color: white;
+            background-color: black;
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 8px 0;
+            width: 90%;
+            border-radius: 5px;
+            cursor: pointer;
+            left: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #333;
+
+        }
+
+        #pauseMenu {
+            width: 320px;
+            height: auto;
+            border: 3px solid white;
+            border-radius: 10px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+        }
+
+        b {
+            color: white;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        #imageList {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        #imageList img {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Marinaio vs Twista Invaders</h1>
+    <script>
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 700;
+        canvas.height = 700;
+        canvas.style.borderColor = "white";
+        document.body.appendChild(canvas);
+
+        let score = 0;
+        let playerSpeed = 40;
+        const playerSize = 100;
+        let bulletSpeed = 4;
+        const bulletSize = 80;
+        let invaderSpeed = 0.5;
+        const invaderSize = 80;
+        let bulletState = 'ready';
+        //variabile per la fine della partita
+        let gameOver = false;
+        //variabile per la pausa
+        let paused = false;
+        let level = 1;
+        let enemyNumber = 3;
+        let currentSongIndex = 1;
+
+        let currentSkinIndex = 0;
+
+        const player = {
+            x: canvas.width / 2,
+            y: canvas.height - 105,
+            width: playerSize,
+            height: playerSize,
+        };
+
+        const bullet = {
+            x: 0,
+            y: 0,
+            width: bulletSize,
+            height: bulletSize,
+        };
+
+        let invaders = Array.from({ length: enemyNumber }, () => ({
+            x: Math.random() * (canvas.width - 40),
+            y: Math.random() * 100 + 20,
+            width: invaderSize,
+            height: invaderSize,
+        }));
+
+        let playerImage = new Image();
+        playerImage.src = './imgs/skins/skin1.png';
+        function drawPlayer() {
+            ctx.drawImage(playerImage, player.x, player.y, player.width, player.height);
+        }
+
+        let bulletImage = new Image();
+        bulletImage.src = './imgs/bullets/nitrous.gif';
+        function drawBullet() {
+            if (bulletState === 'fire') {
+                ctx.drawImage(bulletImage, bullet.x, bullet.y, bullet.width, bullet.height);
+            }
+        }
+
+        let invaderImage = new Image();
+        invaderImage.src = './imgs/enemies/enemy.png';
+        function drawInvaders() {
+            invaders.forEach(invader => {
+                ctx.drawImage(invaderImage, invader.x, invader.y, invader.width, invader.height);
+            });
+        }
+
+        function moveInvaders() {
+            invaders.forEach(invader => {
+                if (
+                    player.x < invader.x + invader.width &&
+                    player.x + player.width > invader.x &&
+                    player.y < invader.y + invader.height &&
+                    player.y + player.height > invader.y
+                ) {
+                    gameOver = true;
+                    if (confirm('GAME OVER! Vuoi ricominciare?')) {
+                        document.location.reload();
+                    } else {
+                        //perdendo ti rimnanda al video di like that remix
+                        document.location.href = "https://youtu.be/R-IACwU12Hw?si=SDv3LO0ngB7vJBQn";
+                    }
+                }
+            });
+            invaders.forEach(invader => {
+                invader.y += invaderSpeed;
+                if (invader.y > canvas.height) {
+                    gameOver = true;
+                    if (confirm('GAME OVER! Vuoi ricominciare?')) {
+                        document.location.reload();
+                    } else {
+                        //perdendo ti rimnanda alla home page
+                        document.location.href = "https://youtu.be/R-IACwU12Hw?si=SDv3LO0ngB7vJBQn";
+                    }
+                }
+            });
+        }
+
+        function moveBullet() {
+            if (bulletState === 'fire') {
+                bullet.y -= bulletSpeed;
+                if (bullet.y < 0) {
+                    bulletState = 'ready';
+                }
+                invaders.forEach((invader, index) => {
+                    if (
+                        bullet.x < invader.x + invader.width &&
+                        bullet.x + bullet.width > invader.x &&
+                        bullet.y < invader.y + invader.height &&
+                        bullet.y + bullet.height > invader.y
+                    ) {
+                        invaders.splice(index, 1);
+                        if (invaders.length === 0) {
+                            invaders = Array.from({ length: enemyNumber }, () => ({
+                                x: Math.random() * (canvas.width - 40),
+                                y: Math.random() * 150 + 50,
+                                width: invaderSize,
+                                height: invaderSize,
+                            }));
+                        }
+                        bulletState = 'ready';
+                        score += 10;
+                        let sfx = new Audio("./sounds/audio" + level + ".mp3");
+                        sfx.volume = 0.05;
+                        sfx.play();
+                        
+                        if (score % 100 == 0) {
+                            //alert("Aumento velocità nemici!");
+                            invaderSpeed += 0.2; // Aumenta leggermente la velocità ad ogni ondata
+                            enemyNumber += 1;
+                            playerSpeed += 5;
+                        }
+                    }
+                });
+            }
+        }
+
+        function fireBullet() {
+            if (bulletState === 'ready') {
+                bullet.x = player.x + player.width / 2;
+                bullet.y = player.y;
+                bulletState = 'fire';
+            }
+        }
+
+        function moveLeft() {
+            player.x = Math.max(player.x - playerSpeed, 0);
+        }
+
+        function moveRight() {
+            player.x = Math.min(player.x + playerSpeed, canvas.width - player.width);
+        }
+
+        //EVENT LISTENER PER I BOTTONI
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'p' || e.key === 'Escape') togglePause();
+            if (e.key === 'r') resumeGame();
+            if (e.key === 'ArrowLeft') moveLeft();
+            if (e.key === 'ArrowRight') moveRight();
+            if (e.key === ' ' || e.key === 0) fireBullet();
+        });
+
+        //EVENT LISTENER PER IL MOUSE
+        document.addEventListener('mousedown', (e) => {
+            if (e.button === 0) fireBullet(); // 0 = Tasto sinistro
+        });
+
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault(); // Previene il menu contestuale del clic destro
+        });
+
+        //FUNZIONI GIOCO
+
+        function drawScore() {
+            ctx.fillStyle = 'white';
+            ctx.font = '20px Courier';
+            ctx.fillText('PUNTEGGIO: ' + score, 10, 30);
+        }
+
+        function togglePause() {
+            paused = !paused;
+            const pauseMenu = document.getElementById('pauseMenu');
+            if (paused) {
+                pauseMenu.style.display = 'block';
+            } else {
+                pauseMenu.style.display = 'none';
+                
+                gameLoop();
+            }
+        }
+
+        function resumeGame() {
+            if (paused) {
+                paused = false;
+                document.getElementById('pauseMenu').style.display = 'none';
+                gameLoop();
+            }
+
+        }
+
+        function gameLoop() {
+            if (gameOver || paused) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawPlayer();
+            moveBullet();
+            drawBullet();
+            moveInvaders();
+            drawInvaders();
+            drawScore();
+
+            requestAnimationFrame(gameLoop);
+        }
+        gameLoop();
+
+        function backHome() {
+            document.location.href = "./index.html";
+        }
+
+        function reloadGame(){
+            document.location.reload();
+        }
+
+        
+
+    </script>
+    <div id="pauseMenu">
+        <b>Menu Pausa</b><br>
+        <label id="levelLabel">Livello: 1</label>
+        <button onclick="reloadGame()">Ricomincia da capo</button>
+        <button onclick="resumeGame()">Riprendi</button> <br />
+        <button onclick="backHome()">Ritorna alla home</button>
+    </div>
+</body>
+
+</html>
