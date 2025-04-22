@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yeezy x aldi</title>
+    <title>Yeezy x Aldi</title>
     <link rel="stylesheet" href="style.css">
-        
-
+</head>
+<body>
     <header>
         <nav></nav>
     </header>
@@ -14,7 +14,7 @@
     <main>
         <section class="hero">
             <div class="hero-content">
-                <h1></h1>
+                <h1>Benvenuto su Yaldi</h1>
             </div>
         </section>
 
@@ -25,7 +25,7 @@
                 </a>
                 <h2>AY-01</h2>
             </div>
-              <div class="product" data-product="3" data-name="FM-01">
+            <div class="product" data-product="3" data-name="FM-01">
                 <img src="https://i.ibb.co/N2MRs64X/FREE-MARINAIO.jpg" alt="FM-104">
                 <h2>FM-104</h2>
                 <div class="purchase-options">
@@ -55,7 +55,7 @@
                 </div>
                 <p class="coming-soon">Coming Soon</p>
             </div>
-        c   <div class="product" data-product="3" data-name="AM-01">
+            <div class="product" data-product="3" data-name="AM-01">
                 <img src="https://i.ibb.co/MDD2ZSgp/Progetto-senza-titolo-2.jpg" alt="AM-01">
                 <h2>AM-01</h2>
                 <div class="purchase-options">
@@ -69,13 +69,13 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 YALDHI. All rights reserved.</p>
+        <small>&copy; 2025 YALDHI. All rights reserved.</small>
     </footer>
 
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2319933286239282"
+        crossorigin="anonymous"></script>
+
     <script>
- async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2319933286239282"
-     crossorigin="anonymous";
-         
         const daysElement = document.getElementById("days");
         const hoursElement = document.getElementById("hours");
         const minutesElement = document.getElementById("minutes");
@@ -94,7 +94,6 @@
                 minutesElement.innerText = "00";
                 secondsElement.innerText = "00";
                 millisecondsElement.innerText = "00";
-                microsecondsElement.innerText = "00";
                 return;
             }
 
@@ -108,11 +107,11 @@
             hoursElement.innerText = String(hours).padStart(2, '0');
             minutesElement.innerText = String(minutes).padStart(2, '0');
             secondsElement.innerText = String(seconds).padStart(2, '0');
-            millisecondsElement.innerText = String(milliseconds).padStart(3, '0').slice(0, 2); // Mostra le prime due cifre dei millisecondi
-
+            millisecondsElement.innerText = String(milliseconds).padStart(3, '0').slice(0, 2);
         }
+
         updateCountdown();
-        const countdownInterval = setInterval(updateCountdown, 1); // Aggiorna il più frequentemente possibile
+        const countdownInterval = setInterval(updateCountdown, 1);
     </script>
 </body>
 </html>
