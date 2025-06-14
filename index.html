@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BULDY</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            user-select: none;
+            overflow: hidden;
+        }
+        
+        img {
+            max-width: 90%;
+            max-height: 90%;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            touch-action: none;
+        }
+        
+        body:active {
+            transform: scale(0.98);
+            transition: transform 0.1s;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo_5940586768992687133_x.jpg-u0lNKUd5DwezCvgG3pS8yxNYIbPWKn.jpeg" alt="Image" draggable="false">
+    
+    <script>
+        // Create audio context for generating random sounds
+        let audioContext;
+        
+        // Initialize audio context on first user interaction
+        function initAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+        
+        // Generate random sound using Web Audio API
+        function playRandomSound() {
+            initAudio();
+            
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            // Random frequency between 200-800 Hz
+            const frequency = Math.random() * 600 + 200;
+            
+            // Random waveform
+            const waveforms = ['sine', 'square', 'sawtooth', 'triangle'];
+            const randomWaveform = waveforms[Math.floor(Math.random() * waveforms.length)];
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+            oscillator.type = randomWaveform;
+            
+            // Random duration between 0.1-0.5 seconds
+            const duration = Math.random() * 0.4 + 0.1;
+            
+            // Fade in and out
+            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+            gainNode.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + 0.01);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+        
+        // Add click event listener to the entire page
+        document.body.addEventListener('click', playRandomSound);
+        
+        // Prevent context menu
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        
+        // Prevent image dragging
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+        });
+        
+        // Prevent text selection
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+        });
+    </script>
+</body>
+</html>
