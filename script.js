@@ -50,9 +50,14 @@ const albums = [
     image: "https://i.ibb.co/NgS7rqnn/2-20250302_130159-0001.jpg",
     available: true,
     tracks: [
-      { title: "AITS-01", name: "ALDI IN THE SKY", duration: "3:24", src: "#" },
-      { title: "MTAM-01", name: "MEET THE ALDI MANAGERS", duration: "2:58", src: "#" },
-      { title: "FG-01", name: "FVUCK GIANVOIT", duration: "4:12", src: "#" },
+      { id: 1, title: "THE GARDEN OF ALDI", duration: "3:45", file: "YALDHI/01 THE GARDEN OF ALDI.mp3" },
+      { id: 2, title: "THE ALDI STORM", duration: "4:12", file: "YALDHI/02 THE ALDI STORM.m4a" },
+      { id: 3, title: "NEW ALDI", duration: "3:24", file: "YALDHI/03 NEW ALDI.mp3" },
+      { id: 4, title: "80 ALDYIES", duration: "3:58", file: "YALDHI/04 80 ALDYIES.m4a" },
+      { id: 5, title: "ALDI IN THE SKY", duration: "4:33", file: "YALDHI/05 ALDI IN THE SKY.mp3" },
+      { id: 6, title: "ALDIEN", duration: "3:17", file: "YALDHI/06 ALDIEN.mp3" },
+      { id: 7, title: "BROTHERS OF ALDI", duration: "4:05", file: "YALDHI/07 BROTHERS OF ALDI.mp3" },
+      { id: 8, title: "FVCK GIANVOIT", duration: "2:58", file: "YALDHI/08 FVCK GIANVOIT.mp3" },
     ],
   },
   {
@@ -66,8 +71,17 @@ const albums = [
     id: 3,
     title: "BULDY",
     image: "/placeholder.svg?height=300&width=300",
-    available: false,
-    tracks: [],
+    available: true,
+    tracks: [
+      { id: 9, title: "ALDIES (CIRCLES)", duration: "3:33", file: "BULDY/ALDIES(CIRCLES)-2.wav" },
+      { id: 10, title: "ALDIMAN", duration: "4:18", file: "BULDY/ALDIMAN.mp3" },
+      { id: 11, title: "ALDITIME", duration: "3:55", file: "BULDY/ALDITIME-2.wav" },
+      { id: 12, title: "ALDY AND LOWS", duration: "3:51", file: "BULDY/ALDYANDLOWS.wav" },
+      { id: 13, title: "ALDY AND THE BEAST", duration: "4:25", file: "BULDY/ALDYANDTHEBEAST.wav" },
+      { id: 14, title: "BESAME ALDI", duration: "3:28", file: "BULDY/BESAMEALDI.wav" },
+      { id: 15, title: "BULDY", duration: "4:07", file: "BULDY/BULDY-2.wav" },
+      { id: 16, title: "I CANT ALDI", duration: "3:42", file: "BULDY/ICANTALDI.wav" },
+    ],
   },
 ]
 
@@ -187,7 +201,7 @@ function handleLogoClick() {
     logoClickCount = 0
 
     // Show notification
-    showNotification("🎮 Easter Egg Sbloccato! Sezione giochi disponibile!")
+    showNotification(" Easter Egg Sbloccato! Sezione giochi disponibile!")
   }
 
   // Reset counter after 2 seconds
@@ -517,7 +531,7 @@ function openGame(gameId) {
 
   switch (gameId) {
     case "yaldi-runner":
-      title = "🎯 YALDI RUNNER"
+      title = " YALDI RUNNER"
       content = createYaldiRunnerGame()
       break
     case "puzzle-yeezy":
@@ -525,11 +539,11 @@ function openGame(gameId) {
       content = createPuzzleYeezyGame()
       break
     case "aldi-quest":
-      title = "🏆 ALDI QUEST"
+      title = " ALDI QUEST"
       content = createAldiQuestGame()
       break
     case "music-hero":
-      title = "🎵 MUSIC HERO"
+      title = " MUSIC HERO"
       content = createMusicHeroGame()
       break
   }
